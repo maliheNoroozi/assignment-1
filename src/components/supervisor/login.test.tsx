@@ -15,7 +15,6 @@ const MockLogin = () => {
     />
   );
 };
-
 describe("Login Component", () => {
   it("renders correctly with pincode circles", () => {
     render(<MockLogin />);
@@ -39,31 +38,27 @@ describe("Login Component", () => {
     });
   });
 
-  it("should send api request, when the pin code is long enough, but still incorrect", async () => {
-    const mockFetch = jest.fn();
-    mockFetch.mockResolvedValueOnce({
-      json: jest.fn().mockResolvedValueOnce({ status: "Failed" }),
-    });
-    window.fetch = mockFetch;
+  it("should get Failed response, when the pin code is long enough, but still incorrect", async () => {
+    const mockedResponse = { status: "Failed" };
+    window.fetch = jest.fn().mockImplementation(() => mockedResponse);
     render(<MockLogin />);
     fireEvent.click(screen.getByText("1"));
     fireEvent.click(screen.getByText("2"));
     fireEvent.click(screen.getByText("3"));
     fireEvent.click(screen.getByText("2"));
     expect(window.fetch).toHaveBeenCalled();
+    expect(window.fetch).toHaveReturnedWith(mockedResponse);
   });
 
-  it("should send api request, when the pin code is long enough and correct", async () => {
-    const mockFetch = jest.fn();
-    mockFetch.mockResolvedValueOnce({
-      json: jest.fn().mockResolvedValueOnce({ status: "Authorized" }),
-    });
-    window.fetch = mockFetch;
+  it("should get Authorized response, when the pin code is long enough and correct", async () => {
+    const mockedResponse = { status: "Authorized" };
+    window.fetch = jest.fn().mockImplementation(() => mockedResponse);
     render(<MockLogin />);
     fireEvent.click(screen.getByText("1"));
     fireEvent.click(screen.getByText("2"));
     fireEvent.click(screen.getByText("3"));
     fireEvent.click(screen.getByText("4"));
     expect(window.fetch).toHaveBeenCalled();
+    expect(window.fetch).toHaveReturnedWith(mockedResponse);
   });
 });
