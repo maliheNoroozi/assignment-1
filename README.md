@@ -8,4 +8,10 @@ This template should help get you started developing with Tauri, React and Types
 
 Please run express server with "node ./server.js" to run server for checking pincode authority
 
-Run tauri react app with "npm run dev"
+Run tauri react app with 
+
+"npm run dev"
+
+or
+
+"npm run tauri dev"
