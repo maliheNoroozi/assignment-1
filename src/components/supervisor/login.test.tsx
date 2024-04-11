@@ -33,7 +33,7 @@ describe("Login Component", () => {
     fireEvent.click(screen.getByText("1"));
     fireEvent.click(screen.getByText("2"));
     fireEvent.click(screen.getByText("3"));
-    await waitFor(() => {
+    waitFor(() => {
       expect(checkAuthorization).not.toHaveBeenCalled();
     });
   });
@@ -68,7 +68,7 @@ describe("Login Component", () => {
     fireEvent.click(screen.getByText("2"));
     fireEvent.click(screen.getByText("3"));
     fireEvent.click(screen.getByText("4"));
-    await waitFor(() => {
+    waitFor(() => {
       const stopPrecedureModalHeader = screen.getByText(
         /Checking pincode validity../i
       );
