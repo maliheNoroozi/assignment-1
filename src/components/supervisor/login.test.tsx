@@ -61,4 +61,18 @@ describe("Login Component", () => {
     expect(window.fetch).toHaveBeenCalled();
     expect(window.fetch).toHaveReturnedWith(mockedResponse);
   });
+
+  it("should show loading message when entering correct pincode", async () => {
+    render(<MockLogin />);
+    fireEvent.click(screen.getByText("1"));
+    fireEvent.click(screen.getByText("2"));
+    fireEvent.click(screen.getByText("3"));
+    fireEvent.click(screen.getByText("4"));
+    await waitFor(() => {
+      const stopPrecedureModalHeader = screen.getByText(
+        /Checking pincode validity../i
+      );
+      expect(stopPrecedureModalHeader).toBeInTheDocument();
+    });
+  });
 });
