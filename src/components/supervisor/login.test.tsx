@@ -68,11 +68,9 @@ describe("Login Component", () => {
     fireEvent.click(screen.getByText("2"));
     fireEvent.click(screen.getByText("3"));
     fireEvent.click(screen.getByText("4"));
-    waitFor(() => {
-      const stopPrecedureModalHeader = screen.getByText(
-        /Checking pincode validity../i
-      );
-      expect(stopPrecedureModalHeader).toBeInTheDocument();
+    await waitFor(() => {
+      const loadingMessage = screen.getByText(/Checking pincode validity../i);
+      expect(loadingMessage).toBeInTheDocument();
     });
   });
 });
