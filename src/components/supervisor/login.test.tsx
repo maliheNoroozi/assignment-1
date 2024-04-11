@@ -33,7 +33,7 @@ describe("Login Component", () => {
     fireEvent.click(screen.getByText("1"));
     fireEvent.click(screen.getByText("2"));
     fireEvent.click(screen.getByText("3"));
-    waitFor(() => {
+    await waitFor(() => {
       expect(checkAuthorization).not.toHaveBeenCalled();
     });
   });
